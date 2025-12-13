@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blog-platform.example.com/sitemap.xml
+
+# Disallow crawling of admin pages
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Allow crawling of public content
+Allow: /posts/
+Allow: /users/
+Allow: /tags/

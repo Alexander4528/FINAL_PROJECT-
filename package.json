@@ -1,0 +1,14 @@
+{
+  "name": "blog-platform",
+  "lockfileVersion": 3,
+  "requires": true,
+  "proxy": "http://localhost:5000",
+  "packages": {},
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}
