@@ -99,7 +99,7 @@ const CreatePostPage = () => {
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) { // 5MB
+    if (file.size > 5 * 1024 * 1024) {
       toast.error('Image size must be less than 5MB');
       return;
     }
@@ -124,10 +124,8 @@ const CreatePostPage = () => {
     
     const result = await createPost(data);
     console.log('Успешно создан:', result);
-    
-    // ДОБАВЬ ЭТИ СТРОКИ:
-    alert('Пост успешно создан!'); // для проверки
-    navigate('/'); // или navigate('/posts');
+    alert('Пост успешно создан!');
+    navigate('/');
     
   } catch (error) {
     console.error('Error:', error);

@@ -25,7 +25,7 @@ import toast from 'react-hot-toast';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const { user: currentUser, logout } = useAuthStore(); // переименовал для ясности
+  const { user: currentUser, logout } = useAuthStore();
   const [activeTab, setActiveTab] = useState('posts');
   const [userPosts, setUserPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +36,6 @@ const ProfilePage = () => {
     comments: 0,
   });
   
-  // Безопасный форматтер даты
   const safeFormatDate = (dateString) => {
     if (!dateString) return 'недавно';
     
@@ -77,7 +76,6 @@ const ProfilePage = () => {
       console.error('Failed to load profile data:', error);
       toast.error('Не удалось загрузить данные профиля');
       
-      // Мок данные на случай ошибки
       setUserPosts([]);
       setStats({
         posts: 0,

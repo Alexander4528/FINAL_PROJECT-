@@ -13,11 +13,6 @@ export const useAuthStore = create(
       
       login: async (email, password) => {
   try {
-    // ВРЕМЕННЫЙ ФИКС: закомментируй реальный запрос
-    // const response = await api.post('/auth/login', { email, password });
-    // const { token, user } = response.data;
-    
-    // МОК-ОТВЕТ:
     console.log('Мок вход:', { email });
     
     await new Promise(resolve => setTimeout(resolve, 500));
@@ -47,7 +42,6 @@ export const useAuthStore = create(
   } catch (error) {
     set({ isLoading: false });
     
-    // Даже при ошибке возвращаем мок пользователя
     const mockUser = {
       id: Date.now(),
       email,
@@ -74,18 +68,8 @@ export const useAuthStore = create(
       
       register: async (email, username, password) => {
   try {
-    // ВРЕМЕННЫЙ ФИКС: закомментируй реальный запрос
-    // const response = await api.post('/auth/register', { 
-    //   email, 
-    //   username, 
-    //   password,
-    //   confirmPassword: password 
-    // });
-    
-    // ВСТАВЬ ВМЕСТО ЭТОГО МОК-ОТВЕТ:
     console.log('Мок регистрация:', { email, username });
-    
-    // Имитация запроса
+  
     await new Promise(resolve => setTimeout(resolve, 800));
     
     const mockUser = {
@@ -107,15 +91,12 @@ export const useAuthStore = create(
       isLoading: false 
     });
     
-    // Set auth header for future requests
     api.defaults.headers.common['Authorization'] = `Bearer ${mockToken}`;
     
     return { success: true, user: mockUser };
     
   } catch (error) {
     set({ isLoading: false });
-    
-    // В случае ошибки тоже возвращаем успех для тестирования
     console.log('Регистрация (мок при ошибке):', { email, username });
     
     const mockUser = {
@@ -170,10 +151,6 @@ export const useAuthStore = create(
   }
   
   try {
-    // ВРЕМЕННО: пропускаем проверку токена
-    // const response = await api.get('/auth/me');
-    
-    // Просто проверяем есть ли токен в localStorage
     const storedData = JSON.parse(localStorage.getItem('auth-storage') || '{}');
     
     if (storedData.state?.token && storedData.state?.user) {
@@ -188,7 +165,6 @@ export const useAuthStore = create(
       return true;
     }
     
-    // Если нет данных, сбрасываем
     set({
       user: null,
       token: null,
@@ -231,7 +207,6 @@ export const useAuthStore = create(
   )
 );
 
-// Auth provider component
 export const AuthProvider = ({ children }) => {
   const { checkAuth, isLoading } = useAuthStore();
   
